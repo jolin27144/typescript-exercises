@@ -31,15 +31,17 @@ interface Admin {
     role: string;
 }
 
-type PowerUser = unknown;
+type PowerUser = Omit<User, 'type'> & Omit<Admin, 'type'> & {
+    type: 'powerUser'
+}
 
 export type Person = User | Admin | PowerUser;
 
 export const persons: Person[] = [
-    { type: 'user', name: 'Max Mustermann', age: 25, occupation: 'Chimney sweep' },
-    { type: 'admin', name: 'Jane Doe', age: 32, role: 'Administrator' },
-    { type: 'user', name: 'Kate Müller', age: 23, occupation: 'Astronaut' },
-    { type: 'admin', name: 'Bruce Willis', age: 64, role: 'World saver' },
+    {type: 'user', name: 'Max Mustermann', age: 25, occupation: 'Chimney sweep'},
+    {type: 'admin', name: 'Jane Doe', age: 32, role: 'Administrator'},
+    {type: 'user', name: 'Kate Müller', age: 23, occupation: 'Astronaut'},
+    {type: 'admin', name: 'Bruce Willis', age: 64, role: 'World saver'},
     {
         type: 'powerUser',
         name: 'Nikki Stone',
